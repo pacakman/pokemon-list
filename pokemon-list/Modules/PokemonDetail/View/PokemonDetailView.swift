@@ -1,5 +1,5 @@
 //  
-//  PokemonListView.swift
+//  PokemonDetailView.swift
 //  pokemon-list
 //
 //  Created by Idris on 19/03/24.
@@ -7,10 +7,9 @@
 
 import UIKit
 
-class PokemonListView: UIViewController {
+class PokemonDetailView: UIViewController {
 
-
-    var viewModel = PokemonListViewModel()
+    var viewModel = PokemonDetailViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +21,22 @@ class PokemonListView: UIViewController {
         viewModel.showAlertClosure = {
 
         }
+        
+        viewModel.updateLoadingStatus = {
+
+        }
 
         viewModel.internetConnectionStatus = {
 
         }
+
+        viewModel.serverErrorStatus = {
+        }
+
+        viewModel.didGetData = {
+            
+        }
+
     }
     
 }
