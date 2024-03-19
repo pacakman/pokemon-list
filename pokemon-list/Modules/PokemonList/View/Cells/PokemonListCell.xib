@@ -18,10 +18,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ceI-un-pBF" userLabel="Container View">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="298"/>
+                        <rect key="frame" x="16" y="8" width="288" height="282"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i7Q-gf-HX7">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="298"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pokemon" translatesAutoresizingMaskIntoConstraints="NO" id="i7Q-gf-HX7">
+                                <rect key="frame" x="0.0" y="0.0" width="288" height="282"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -31,20 +34,34 @@
                             <constraint firstAttribute="bottom" secondItem="i7Q-gf-HX7" secondAttribute="bottom" id="Ycv-Kg-0fD"/>
                             <constraint firstItem="i7Q-gf-HX7" firstAttribute="top" secondItem="ceI-un-pBF" secondAttribute="top" id="hCx-Qe-5eX"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ceI-un-pBF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="67B-Lo-wfU"/>
-                    <constraint firstAttribute="trailing" secondItem="ceI-un-pBF" secondAttribute="trailing" id="8GW-QJ-IQk"/>
-                    <constraint firstItem="ceI-un-pBF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="cYM-ZN-9h0"/>
-                    <constraint firstAttribute="bottom" secondItem="ceI-un-pBF" secondAttribute="bottom" id="nWR-je-DJR"/>
+                    <constraint firstItem="ceI-un-pBF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="67B-Lo-wfU"/>
+                    <constraint firstAttribute="trailing" secondItem="ceI-un-pBF" secondAttribute="trailing" constant="16" id="8GW-QJ-IQk"/>
+                    <constraint firstItem="ceI-un-pBF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="cYM-ZN-9h0"/>
+                    <constraint firstAttribute="bottom" secondItem="ceI-un-pBF" secondAttribute="bottom" constant="8" id="nWR-je-DJR"/>
                 </constraints>
+                <userDefinedRuntimeAttributes>
+                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                </userDefinedRuntimeAttributes>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="containerView" destination="ceI-un-pBF" id="nrz-fc-2e9"/>
+                <outlet property="pokemonImageView" destination="i7Q-gf-HX7" id="I0E-Vf-06k"/>
+            </connections>
             <point key="canvasLocation" x="77.862595419847324" y="109.1549295774648"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="pokemon" width="500" height="500"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

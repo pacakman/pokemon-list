@@ -8,6 +8,15 @@
 import UIKit
 
 class PokemonListCell: UITableViewCell {
+    // MARK: - Outlets
+    @IBOutlet private weak var containerView: UIView! {
+        didSet {
+            containerView.layer.cornerRadius = 16
+            containerView.layer.applyCustomShadow()
+        }
+    }
+
+    @IBOutlet private weak var pokemonImageView: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -15,5 +24,9 @@ class PokemonListCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+
+    func setupView(pokemon: PokemonListModel) {
+        
     }
 }

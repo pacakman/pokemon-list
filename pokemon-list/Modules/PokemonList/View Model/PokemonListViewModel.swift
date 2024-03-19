@@ -13,6 +13,9 @@ class PokemonListViewModel {
 
     private var networkStatus = Reach().connectionStatus()
 
+    var currentPage: Int = 1
+    var canLoadMorePokemons: Bool = false
+
     var isDisconnected: Bool = false {
         didSet {
             alertMessage = "No network connection. Please connect to the internet"
