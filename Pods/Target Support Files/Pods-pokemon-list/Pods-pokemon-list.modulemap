@@ -1,0 +1,6 @@
+framework module Pods_pokemon_list {
+  umbrella header "Pods-pokemon-list-umbrella.h"
+
+  export *
+  module * { export * }
+}
