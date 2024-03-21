@@ -29,6 +29,8 @@ class PokemonListView: BaseViewController {
                 }
             }
             tableView.showsVerticalScrollIndicator = false
+            tableView.refreshControl = getCommonRefreshControl()
+            tableView.refreshControl?.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         }
     }
 
@@ -38,13 +40,20 @@ class PokemonListView: BaseViewController {
         }
     }
 
-
-    var viewModel = PokemonListViewModel()
+    private var viewModel = PokemonListViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupViewModel()
+    }
+
+    @objc private func refreshData(_ sender: Any) {
+        tableView.refreshControl?.beginRefreshing()
+        viewModel.currentPage = 1
+        viewModel.getPokemons { [weak self] in
+            self?.tableView.refreshControl?.endRefreshing()
+        }
     }
 
     private func setupView() {
@@ -69,16 +78,7 @@ class PokemonListView: BaseViewController {
             self?.showErrorMessage(error: errorMessage)
         }
         viewModel.getPokemons(completion: nil)
-//        viewModel.updateConnectionStatus = { [weak self] isConnected in
-//            if isConnected {
-//                self?.dismiss(animated: true)
-//            }
-//            else {
-//                self?.showNoConnection()
-//            }
-//        }
     }
-
 }
 
 

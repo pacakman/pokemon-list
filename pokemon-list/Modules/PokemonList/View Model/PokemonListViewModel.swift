@@ -18,29 +18,10 @@ class PokemonListViewModel {
 
     var updateLoadingStatus: ((Bool) -> Void)?
     var didGetPokemons: (() -> Void)?
-    var updateConnectionStatus: ((Bool) -> Void)?
     var showErrorMessage: ((String) -> Void)?
 
     init(withPokemonList service: PokemonListServiceProtocol = PokemonListService() ) {
         self.service = service
-
-        NotificationCenter.default.addObserver(self, selector: #selector(self.networkStatusChanged(_:)), name: NSNotification.Name(rawValue: ReachabilityStatusChangedNotification), object: nil)
-        Reach().monitorReachabilityChanges()
-    }
-
-    @objc func networkStatusChanged(_ notification: Notification) {
-        switch Reach().connectionStatus() {
-        case .offline:
-            updateConnectionStatus?(false)
-        case .online(_):
-            updateConnectionStatus?(true)
-        default:
-            updateConnectionStatus?(false)
-        }
-    }
-
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: ReachabilityStatusChangedNotification), object: nil)
     }
 
     func getPokemons(completion: (() -> Void)?) {

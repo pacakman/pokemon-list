@@ -9,7 +9,6 @@ import Foundation
 import Moya
 enum PokemonProvider {
     case getPokemon(page: Int = 1, keyword: String = "")
-    case getOtherPokemon(subtype: String)
 }
 
 extension PokemonProvider: TargetType {
@@ -19,7 +18,7 @@ extension PokemonProvider: TargetType {
 
     var path: String {
         switch self {
-        case .getPokemon, .getOtherPokemon:
+        case .getPokemon:
             return "cards"
         }
     }
@@ -37,19 +36,14 @@ extension PokemonProvider: TargetType {
             if keyword.isNotEmpty {
                 data["q"] = "name:\(keyword)"
             }
-        case .getOtherPokemon(let subtype):
-            data["page"]        = 1
-            data["pageSize"]    = 5
-            data["q"]           = "subtypes:\(subtype)"
+            return .requestParameters(parameters: data, encoding: URLEncoding.default)
         }
-        return .requestParameters(parameters: data, encoding: URLEncoding.default)
     }
 
     var headers: [String : String]? {
-        return nil
-//        return [
-//            "X-Api-Key":"48b11e4c-8eb2-485e-ba9a-032cbcbcc379",
-//            "If-None-Match":"*"
-//        ]
+        return [
+            "X-Api-Key":"48b11e4c-8eb2-485e-ba9a-032cbcbcc379",
+            "If-None-Match":"*"
+        ]
     }
 }

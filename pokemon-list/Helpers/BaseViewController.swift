@@ -14,17 +14,6 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    func showNoConnection() {
-        let vc = NoConnectionView()
-        vc.modalPresentationStyle = .overCurrentContext
-        vc.modalTransitionStyle = .coverVertical
-        present(vc, animated: true)
-    }
-
-    func dismissCurrentView() {
-        self.dismiss(animated: true)
-    }
-
     func showErrorMessage(error: String) {
         let toast = FloatingNotificationBanner(
             title: error,
@@ -35,5 +24,12 @@ class BaseViewController: UIViewController {
         )
 
         toast.show(edgeInsets:  UIEdgeInsets(top: 12, left: 16, bottom: 0, right: 16), cornerRadius: 6)
+    }
+
+    func getCommonRefreshControl() -> UIRefreshControl {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .darkGray
+        refreshControl.backgroundColor = .clear
+        return refreshControl
     }
 }

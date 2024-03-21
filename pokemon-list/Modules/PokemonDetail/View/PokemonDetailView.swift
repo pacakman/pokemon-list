@@ -74,7 +74,7 @@ class PokemonDetailView: BaseViewController {
         }
     }
 
-    private var viewModel = PokemonDetailViewModel()
+    // MARK: - Properties
     private var pokemonAttribute: PokemonAttribute
 
     init(pokemonAttribute: PokemonAttribute) {
@@ -88,15 +88,10 @@ class PokemonDetailView: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViewModel()
         setupView()
         title = "Pokemon Detail"
     }
     
-    private func setupViewModel() {
-
-    }
-
     private func setupView() {
         pokemonImageView.setImageFromURL(url: pokemonAttribute.images.large)
         descriptionLabel.text = pokemonAttribute.flavorText ?? "-"
