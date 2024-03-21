@@ -33,7 +33,7 @@ extension PokemonProvider: TargetType {
         switch self {
         case .getPokemon(let page, let keyword):
             data["page"] = page
-            data["pageSize"] = 5
+            data["pageSize"] = 8
             if keyword.isNotEmpty {
                 data["q"] = "name:\(keyword)"
             }
@@ -46,9 +46,10 @@ extension PokemonProvider: TargetType {
     }
 
     var headers: [String : String]? {
-        return [
-            "X-Api-Key":"48b11e4c-8eb2-485e-ba9a-032cbcbcc379",
-            "If-None-Match":"*"
-        ]
+        return nil
+//        return [
+//            "X-Api-Key":"48b11e4c-8eb2-485e-ba9a-032cbcbcc379",
+//            "If-None-Match":"*"
+//        ]
     }
 }

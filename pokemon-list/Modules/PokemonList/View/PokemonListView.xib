@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PokemonListView" customModule="pokemon_list" customModuleProvider="target">
             <connections>
+                <outlet property="searchBar" destination="gH7-uz-3FH" id="G3a-3x-tfZ"/>
                 <outlet property="tableView" destination="Bqs-AP-2bu" id="D3I-Gy-d4Q"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -19,10 +20,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TvJ-V0-ILW">
-                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                     <subviews>
+                        <searchBar contentMode="redraw" placeholder="Cari Pokemon" translatesAutoresizingMaskIntoConstraints="NO" id="gH7-uz-3FH">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="bL9-zb-HpO"/>
+                            </connections>
+                        </searchBar>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Bqs-AP-2bu">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            <rect key="frame" x="0.0" y="56" width="393" height="737"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -36,7 +44,7 @@
                 <constraint firstAttribute="trailing" secondItem="TvJ-V0-ILW" secondAttribute="trailing" id="5io-Jf-kkR"/>
                 <constraint firstItem="TvJ-V0-ILW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QGZ-Qu-Nmf"/>
                 <constraint firstAttribute="bottom" secondItem="TvJ-V0-ILW" secondAttribute="bottom" id="Uqi-dI-qa6"/>
-                <constraint firstItem="TvJ-V0-ILW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="kch-py-VS8"/>
+                <constraint firstItem="TvJ-V0-ILW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" id="kch-py-VS8"/>
             </constraints>
             <point key="canvasLocation" x="33.5" y="54.5"/>
         </view>

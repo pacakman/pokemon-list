@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PokemonDetailView: UIViewController {
+class PokemonDetailView: BaseViewController {
 
     // MARK: Outlets
     @IBOutlet private weak var pokemonImageView: UIImageView!

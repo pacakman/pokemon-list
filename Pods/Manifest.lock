@@ -3,16 +3,22 @@ PODS:
   - Kingfisher (5.8.1):
     - Kingfisher/Core (= 5.8.1)
   - Kingfisher/Core (5.8.1)
+  - MarqueeLabel (4.0.5)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
+  - NotificationBannerSwift (3.0.6):
+    - MarqueeLabel (~> 4.0.5)
+    - SnapKit (~> 5.0.1)
   - SkeletonView (1.17.2)
+  - SnapKit (5.0.1)
   - UIScrollView-InfiniteScroll (1.3.0)
 
 DEPENDENCIES:
   - Kingfisher (= 5.8.1)
   - Moya (= 15.0.0)
+  - NotificationBannerSwift (~> 3.0.0)
   - SkeletonView (= 1.17.2)
   - UIScrollView-InfiniteScroll (= 1.3.0)
 
@@ -20,17 +26,23 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - Kingfisher
+    - MarqueeLabel
     - Moya
+    - NotificationBannerSwift
     - SkeletonView
+    - SnapKit
     - UIScrollView-InfiniteScroll
 
 SPEC CHECKSUMS:
   Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
   Kingfisher: de969e451c81ca6c07a454bc36fea84b8b08c3c7
+  MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  NotificationBannerSwift: 7021be2338f8f29cf424b0aca43da462bf9e2a1a
   SkeletonView: 7aba21d10df8d0530189379ebe02e02a192d8132
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   UIScrollView-InfiniteScroll: a30af3dec185edd26d6ad50c521aa277f3ebf177
 
-PODFILE CHECKSUM: 9fcf37cba094f147739c7a8c53c60599c14d7c04
+PODFILE CHECKSUM: 42a4f33423d18bcdad9e1d9140d83e380127dcaf
 
 COCOAPODS: 1.12.0

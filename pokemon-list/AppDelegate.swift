@@ -16,7 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window = UIWindow(frame: UIScreen.main.bounds)
         let controller = PokemonListView()
-        window?.rootViewController = UINavigationController(rootViewController: controller)
+        let navigationController = UINavigationController(rootViewController: controller)
+        navigationController.navigationItem.largeTitleDisplayMode = .never
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         return true
     }

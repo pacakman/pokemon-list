@@ -10,6 +10,7 @@ target 'pokemon-list' do
   pod 'Moya', '15.0.0'
   pod 'SkeletonView', '1.17.2'
   pod 'UIScrollView-InfiniteScroll', '1.3.0'
+  pod 'NotificationBannerSwift', '~> 3.0.0'
 
   target 'pokemon-listTests' do
     inherit! :search_paths

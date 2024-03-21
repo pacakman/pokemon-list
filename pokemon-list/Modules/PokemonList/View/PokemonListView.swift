@@ -32,6 +32,12 @@ class PokemonListView: BaseViewController {
         }
     }
 
+    @IBOutlet private weak var searchBar: UISearchBar! {
+        didSet {
+            searchBar.delegate = self
+        }
+    }
+
 
     var viewModel = PokemonListViewModel()
 
@@ -39,16 +45,6 @@ class PokemonListView: BaseViewController {
         super.viewDidLoad()
         setupView()
         setupViewModel()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = true
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = false
     }
 
     private func setupView() {
@@ -69,15 +65,18 @@ class PokemonListView: BaseViewController {
         viewModel.didGetPokemons = { [weak self] in
             self?.tableView.reloadData()
         }
-        viewModel.getPokemons(completion: nil)
-        viewModel.updateConnectionStatus = { [weak self] isConnected in
-            if isConnected {
-                self?.dismiss(animated: true)
-            }
-            else {
-                self?.showNoConnection()
-            }
+        viewModel.showErrorMessage = { [weak self] errorMessage in
+            self?.showErrorMessage(error: errorMessage)
         }
+        viewModel.getPokemons(completion: nil)
+//        viewModel.updateConnectionStatus = { [weak self] isConnected in
+//            if isConnected {
+//                self?.dismiss(animated: true)
+//            }
+//            else {
+//                self?.showNoConnection()
+//            }
+//        }
     }
 
 }
@@ -128,6 +127,33 @@ extension PokemonListView: SkeletonTableViewDataSource, UITableViewDelegate {
             let pokemon = viewModel.selectPokemonAtIndex(index: indexPath.row)
             let controller = PokemonDetailView(pokemonAttribute: pokemon)
             navigationController?.pushViewController(controller, animated: true)
+        }
+    }
+}
+
+extension PokemonListView: UISearchBarDelegate {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.keyword = ""
+        searchBar.text = ""
+        viewModel.currentPage = 1
+        viewModel.getPokemons {
+            searchBar.endEditing(true)
+            searchBar.showsCancelButton = false
+        }
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.keyword = searchBar.text ?? ""
+        if viewModel.keyword.isNotEmpty {
+            viewModel.currentPage = 1
+            viewModel.getPokemons {
+                searchBar.endEditing(true)
+                searchBar.showsCancelButton = false
+            }
         }
     }
 }

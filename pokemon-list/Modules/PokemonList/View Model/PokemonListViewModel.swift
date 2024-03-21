@@ -19,6 +19,7 @@ class PokemonListViewModel {
     var updateLoadingStatus: ((Bool) -> Void)?
     var didGetPokemons: (() -> Void)?
     var updateConnectionStatus: ((Bool) -> Void)?
+    var showErrorMessage: ((String) -> Void)?
 
     init(withPokemonList service: PokemonListServiceProtocol = PokemonListService() ) {
         self.service = service
@@ -44,7 +45,7 @@ class PokemonListViewModel {
 
     func getPokemons(completion: (() -> Void)?) {
         updateLoadingStatus?(true)
-        service.getPokemons(page: currentPage, keyword: "") { [weak self] result in
+        service.getPokemons(page: currentPage, keyword: keyword) { [weak self] result in
             let totalData = self?.pokemons.count ?? 0
             if let currentPage = self?.currentPage, currentPage == 1 {
                 self?.pokemons = result.data
@@ -59,8 +60,9 @@ class PokemonListViewModel {
             self?.updateLoadingStatus?(false)
             self?.didGetPokemons?()
             completion?()
-        } onFailure: { error in
-            self.updateLoadingStatus?(false)
+        } onFailure: { [weak self] error in
+            self?.updateLoadingStatus?(false)
+            self?.showErrorMessage?(error.localizedDescription)
             completion?()
         }
 
