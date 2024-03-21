@@ -11,8 +11,6 @@ class PokemonListViewModel {
 
     private let service: PokemonListServiceProtocol
 
-    private var networkStatus = Reach().connectionStatus()
-
     var currentPage: Int = 1
     var canLoadMorePokemons: Bool = false
     var keyword: String = ""
@@ -20,6 +18,7 @@ class PokemonListViewModel {
 
     var updateLoadingStatus: ((Bool) -> Void)?
     var didGetPokemons: (() -> Void)?
+    var updateConnectionStatus: ((Bool) -> Void)?
 
     init(withPokemonList service: PokemonListServiceProtocol = PokemonListService() ) {
         self.service = service
@@ -29,7 +28,14 @@ class PokemonListViewModel {
     }
 
     @objc func networkStatusChanged(_ notification: Notification) {
-        self.networkStatus = Reach().connectionStatus()
+        switch Reach().connectionStatus() {
+        case .offline:
+            updateConnectionStatus?(false)
+        case .online(_):
+            updateConnectionStatus?(true)
+        default:
+            updateConnectionStatus?(false)
+        }
     }
 
     deinit {

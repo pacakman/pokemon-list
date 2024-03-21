@@ -9,12 +9,13 @@ import UIKit
 import SkeletonView
 import UIScrollView_InfiniteScroll
 
-class PokemonListView: UIViewController {
+class PokemonListView: BaseViewController {
 
     // MARK: - Outlets
     @IBOutlet private weak var tableView: UITableView! {
         didSet {
             tableView.registerNIB(with: PokemonListCell.self)
+            tableView.registerNIB(with: PokemonListEmptyCell.self)
             tableView.delegate = self
             tableView.dataSource = self
             tableView.estimatedRowHeight = 250
@@ -52,11 +53,6 @@ class PokemonListView: UIViewController {
 
     private func setupView() {
         title = "Pokemon"
-
-        let vc = NoConnectionView()
-        vc.modalPresentationStyle = .overCurrentContext
-        vc.modalTransitionStyle = .coverVertical
-        present(vc, animated: true)
     }
 
     func setupViewModel() {
@@ -74,6 +70,14 @@ class PokemonListView: UIViewController {
             self?.tableView.reloadData()
         }
         viewModel.getPokemons(completion: nil)
+        viewModel.updateConnectionStatus = { [weak self] isConnected in
+            if isConnected {
+                self?.dismiss(animated: true)
+            }
+            else {
+                self?.showNoConnection()
+            }
+        }
     }
 
 }
@@ -86,10 +90,17 @@ extension PokemonListView: SkeletonTableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let contentCell = tableView.dequeueCell(with: PokemonListCell.self) {
+        // dequeue pokemon cell
+        if let contentCell = tableView.dequeueCell(with: PokemonListCell.self), viewModel.pokemons.isNotEmpty {
             let pokemon = viewModel.selectPokemonAtIndex(index: indexPath.row)
             contentCell.selectionStyle = .none
             contentCell.setupView(pokemon: pokemon)
+            return contentCell
+        }
+
+        // dequeue empty pokemon cell
+        if let contentCell = tableView.dequeueCell(with: PokemonListEmptyCell.self), viewModel.pokemons.isEmpty {
+            contentCell.selectionStyle = .none
             return contentCell
         }
 
@@ -99,16 +110,24 @@ extension PokemonListView: SkeletonTableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if viewModel.pokemons.isEmpty {
+            return 1
+        }
         return viewModel.pokemons.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if viewModel.pokemons.isEmpty && !tableView.isSkeletonActive {
+            return UITableView.automaticDimension
+        }
         return 450
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let pokemon = viewModel.selectPokemonAtIndex(index: indexPath.row)
-        let controller = PokemonDetailView(pokemonAttribute: pokemon)
-        navigationController?.pushViewController(controller, animated: true)
+        if viewModel.pokemons.isNotEmpty {
+            let pokemon = viewModel.selectPokemonAtIndex(index: indexPath.row)
+            let controller = PokemonDetailView(pokemonAttribute: pokemon)
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }

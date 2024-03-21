@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NoConnectionView" customModule="pokemon_list" customModuleProvider="target">
             <connections>
+                <outlet property="containerView" destination="heV-oY-kWa" id="pz7-Aa-WBr"/>
+                <outlet property="titleLabel" destination="Mlp-wD-qsL" id="BQ5-X3-uMZ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -31,7 +33,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mKZ-7b-psp">
                                     <rect key="frame" x="16" y="16" width="361" height="150"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2fq-xm-yF3">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_no_connection" translatesAutoresizingMaskIntoConstraints="NO" id="2fq-xm-yF3">
                                             <rect key="frame" x="105.66666666666669" y="0.0" width="150" height="150"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="150" id="VEg-9n-v9u"/>
@@ -74,6 +76,7 @@
         </view>
     </objects>
     <resources>
+        <image name="icon_no_connection" width="913" height="898"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

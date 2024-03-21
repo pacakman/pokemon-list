@@ -28,7 +28,6 @@ class PokemonListCell: UITableViewCell {
     }
 
     func setupView(pokemon: PokemonAttribute) {
-//        pokemonImageView.kf.setImage(with: URL(string: pokemon.images.large), placeholder: UIImage(named: "icon_placeholder_image"))
         pokemonImageView.setImageFromURL(url: pokemon.images.large)
     }
 }
