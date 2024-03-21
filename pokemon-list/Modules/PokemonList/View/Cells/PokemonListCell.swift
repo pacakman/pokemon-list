@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PokemonListCell: UITableViewCell {
     // MARK: - Outlets
@@ -26,7 +27,8 @@ class PokemonListCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
-    func setupView(pokemon: PokemonListModel) {
-        
+    func setupView(pokemon: PokemonAttribute) {
+//        pokemonImageView.kf.setImage(with: URL(string: pokemon.images.large), placeholder: UIImage(named: "icon_placeholder_image"))
+        pokemonImageView.setImageFromURL(url: pokemon.images.large)
     }
 }
