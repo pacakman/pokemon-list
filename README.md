@@ -1,7 +1,7 @@
 # pokemon-list
 This repository is about pokemon using mvvm architecture
 ## Screenshot
-![Simulator Screenshot - iPhone 11 - 2024-03-21 at 21 54 18](https://github.com/pacakman/pokemon-list/assets/9367244/b52d25b3-eda4-43c0-8a86-3e8c8662fda2)
+![Simulator Screenshot - iPhone 11 - 2024-03-22 at 08 58 51](https://github.com/pacakman/pokemon-list/assets/9367244/64d8b11e-7f16-48d9-976a-050dab1e24d3)
 
 ![Simulator Screenshot - iPhone 11 - 2024-03-21 at 21 54 58](https://github.com/pacakman/pokemon-list/assets/9367244/29036c87-8ae5-4a42-a264-0a4ef93f2e79)
 
