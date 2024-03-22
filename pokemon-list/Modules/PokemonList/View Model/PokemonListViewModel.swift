@@ -43,7 +43,7 @@ class PokemonListViewModel {
             completion?()
         } onFailure: { [weak self] error in
             self?.updateLoadingStatus?(false)
-            self?.showErrorMessage?(error.localizedDescription)
+            self?.showErrorMessage?(error.customErroMessage)
             completion?()
         }
 

@@ -6,7 +6,8 @@
 //
 
 import Foundation
+import Moya
 
 protocol PokemonListServiceProtocol {
-    func getPokemons(page: Int, keyword: String, onSuccess: ((PokemonListModel) -> Void)?, onFailure: ((Error) -> Void)?)
+    func getPokemons(page: Int, keyword: String, onSuccess: ((PokemonListModel) -> Void)?, onFailure: ((MoyaError) -> Void)?)
 }
